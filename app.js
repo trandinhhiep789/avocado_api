@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const PORT = process.env.PORT || 8080; // Step 1
+const PORT = process.env.PORT || 3000; // Step 1
 
 // kết nối
 const mongoose = require('mongoose')
