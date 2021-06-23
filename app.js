@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const PORT = process.env.PORT || 8080; // Step 1
+
 // kết nối
 const mongoose = require('mongoose')
 
@@ -16,7 +18,7 @@ const url = "mongodb+srv://eltr:eltr@cluster0.5yjox.mongodb.net/dbProduct?retryW
 
 app.use(express.json())
 
-mongoose.connect(url,{useUnifiedTopology: true, useNewUrlParser:true}).then(() => console.log('MongoDB connected...'))
+mongoose.connect(process.env.MONGODB_URI,{useUnifiedTopology: true, useNewUrlParser:true}).then(() => console.log('MongoDB connected...'))
 .catch(err => console.log(err));
 // kết thúc kết nối
 
