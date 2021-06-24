@@ -118,11 +118,6 @@ router.post('/signup', (req, res) => {
             status: "FAILED",
             message: "Ten khong chua ki tu so"
         })
-    }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)){
-        res.json({
-            status: "FAILED",
-            message: "email Err"
-        })
     }else if (passWord.length < 3){
         res.json({
             status: "FAILED",
