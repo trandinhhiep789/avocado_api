@@ -104,9 +104,9 @@ router.get("/get_user_with_tenUser", function (req, res, next) {
 // sign up
 router.post('/signup', (req, res) => {
     let {tenUser, email, passWord, loaiUser} = req.body
-    tenUser.trim()
-    email.trim()
-    passWord.trim()
+    // tenUser.trim()
+    // email.trim()
+    // passWord.trim()
 
     if( tenUser == "" || email == "" || passWord == ""){
         res.json({
