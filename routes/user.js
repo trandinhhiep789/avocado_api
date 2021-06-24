@@ -118,11 +118,6 @@ router.post('/signup', (req, res) => {
             status: "FAILED",
             message: "Ten khong chua ki tu so"
         })
-    }else if (passWord.length < 3){
-        res.json({
-            status: "FAILED",
-            message: "passWord it nhat 3 kí tự"
-        })
     }else{
         // kt xem user có tồn tại chưa
         User.find({email}).then(result => {
