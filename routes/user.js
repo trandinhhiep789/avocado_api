@@ -104,9 +104,9 @@ router.get("/get_user_with_tenUser", function (req, res, next) {
 // sign up
 router.post('/signup', (req, res) => {
     let {tenUser, email, passWord, loaiUser} = req.body
-    // tenUser.trim()
-    // email.trim()
-    // passWord.trim()
+    tenUser.trim()
+    email.trim()
+    passWord.trim()
 
     if( tenUser == "" || email == "" || passWord == ""){
         res.json({
@@ -117,6 +117,16 @@ router.post('/signup', (req, res) => {
         res.json({
             status: "FAILED",
             message: "Ten khong chua ki tu so"
+        })
+    }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)){
+        res.json({
+            status: "FAILED",
+            message: "email Err"
+        })
+    }else if (passWord.length < 3){
+        res.json({
+            status: "FAILED",
+            message: "passWord it nhat 3 kí tự"
         })
     }else{
         // kt xem user có tồn tại chưa
