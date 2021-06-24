@@ -18,7 +18,7 @@ const url = "mongodb+srv://eltr:eltr@cluster0.5yjox.mongodb.net/dbProduct?retryW
 
 app.use(express.json())
 
-mongoose.connect(process.env.MONGODB_URI,{useUnifiedTopology: true, useNewUrlParser:true}).then(() => console.log('MongoDB connected...'))
+mongoose.connect(process.env.MONGODB_URI || url ,{useUnifiedTopology: true, useNewUrlParser:true}).then(() => console.log('MongoDB connected...'))
 .catch(err => console.log(err));
 
 if (process.env.NODE_ENV === 'production') {
