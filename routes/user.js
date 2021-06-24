@@ -159,7 +159,7 @@ router.post('/signup', (req, res) => {
                         {
                             res.json({
                                 status: "FAILED",
-                                message: "có lỗi xay ra trong khi tao user!"
+                                message: `có lỗi xay ra trong khi tao user! err: ${err}`
                             })
                         }
                     })
