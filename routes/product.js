@@ -3,7 +3,42 @@ const mongoose = require("mongoose");
 let Product = require("../models/ProductModel");
 const fs = require("fs");
 
-
+router.get("/getall", function (req, res, next) {
+  Product.find({})
+    .limit(100)
+    .sort({ tenSanPham: 1 })
+    .select({
+      tenSanPham: 1,
+      thongTinThuongHieu: 1,
+      congDung: 1,
+      loaiDaPhuHop: 1,
+      huongDanPhuHop: 1,
+      donGiaCu: 1,
+      donGiaMoi: 1,
+      thanhPhan: 1,
+      create_date: 1,
+      diemDanhGia: 1,
+      categoryId: 1,
+      status: 1,
+      imageUrl: 1,
+    })
+    .exec((err, product) => {
+      if (err) {
+        res.json({
+          result: "failed",
+          data: [],
+          message: `Error is: ${err}`,
+        });
+      } else {
+        res.json({
+          result: "ok",
+          data: product,
+          count: product.length,
+          message: `Successfully`,
+        });
+      }
+    });
+});
 
 //get by id
 // ex: http://localhost:3000/get_product_by_id?product_id=60caf9bf8a8d4027e40a8e1f
