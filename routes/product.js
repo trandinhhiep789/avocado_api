@@ -40,7 +40,30 @@ router.get("/getall", function (req, res, next) {
     });
 });
 
+//get by id
+// ex: http://localhost:3000/get_product_by_id?product_id=60caf9bf8a8d4027e40a8e1f
+router.get("/get_product_by_id", function (req, res, next) {
+  console.log(mongoose.Types.ObjectId(req.query.product_id));
 
+  Product.findById(
+    mongoose.Types.ObjectId(req.query.product_id),
+    (err, product) => {
+      if (err) {
+        res.json({
+          result: "failed",
+          data: {},
+          message: `Error is: ${err}`,
+        });
+      } else {
+        res.json({
+          result: "ok",
+          data: product,
+          message: `Successfully`,
+        });
+      }
+    }
+  );
+});
 
 //get by category_id
 router.get("/get_product_with_category_id", (req, res, next) => {
