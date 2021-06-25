@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+// enable CORS()
+var cors = require('cors')
+app.use(cors())
 
 const PORT = process.env.PORT || 3000; // Step 1
 
