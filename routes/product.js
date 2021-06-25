@@ -65,64 +65,7 @@ router.get("/get_product_by_id", function (req, res, next) {
   );
 });
 
-//get by category_id
-router.get("/get_product_with_category_id", (req, res, next) => {
-  // criteria tiêu chuẩn
-  // let condition = {};
-  // if (mongoose.Types.ObjectId.isValid(req.body.category_id) == true) {
-  //   condition.categoryId = mongoose.Types.ObjectId(req.body.category_id);
-  // } else {
-  //   res.json({
-  //     result: "failed",
-  //     data: {},
-  //     message: `Id không hợp lệ`,
-  //   });
-  // }
 
-  var condition = {
-    categoryId: mongoose.Types.ObjectId(req.query.category_id),
-  };
-
-  const limit = parseInt(req.query.limit) > 0 ? parseInt(req.query.limit) : 100;
-  console.log(condition.categoryId);
-  console.log(req.query.category_id);
-
-  Product.find(condition)
-    .limit(limit)
-    .sort({ tenSanPham: 1 })
-    .select({
-      tenSanPham: 1,
-      thongTinThuongHieu: 1,
-      congDung: 1,
-      loaiDaPhuHop: 1,
-      huongDanPhuHop: 1,
-      donGiaCu: 1,
-      donGiaMoi: 1,
-      thanhPhan: 1,
-      diemDanhGia: 1,
-      categoryId: 1,
-      create_date: 1,
-      status: 1,
-      binhLuan: 1,
-      imageUrl: 1,
-    })
-    .exec((err, product) => {
-      if (err) {
-        res.json({
-          result: "failed",
-          data: [],
-          message: `Error is: ${err}`,
-        });
-      } else {
-        res.json({
-          result: "ok",
-          data: product,
-          count: product.length,
-          message: `Successfully`,
-        });
-      }
-    });
-});
 
 //get by tenSanPham
 router.get("/get_product_with_criteria", function (req, res, next) {
