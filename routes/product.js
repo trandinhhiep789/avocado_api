@@ -103,6 +103,8 @@ router.get("/get_product_with_category_id", (req, res, next) => {
       categoryId: 1,
       create_date: 1,
       status: 1,
+      binhLuan: 1,
+      imageUrl: 1,
     })
     .exec((err, product) => {
       if (err) {
@@ -146,6 +148,8 @@ router.get("/get_product_with_criteria", function (req, res, next) {
       categoryId: 1,
       create_date: 1,
       status: 1,
+      binhLuan: 1,
+      imageUrl: 1,
     })
     .exec((err, product) => {
       if (err) {
