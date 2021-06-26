@@ -31,6 +31,30 @@ router.get("/getall-category", function (req, res, next) {
     });
 });
 
+//get category by id
+router.get("/get_category_by_id", function (req, res, next) {
+  console.log(mongoose.Types.ObjectId(req.query.category_id));
+
+  Category.findById(
+    mongoose.Types.ObjectId(req.query.category_id),
+    (err, category) => {
+      if (err) {
+        res.json({
+          result: "failed",
+          data: {},
+          message: `Error is: ${err}`,
+        });
+      } else {
+        res.json({
+          result: "ok",
+          data: category,
+          message: `Successfully`,
+        });
+      }
+    }
+  );
+});
+
 router.post("/insert_new_category", (req, res, next) => {
   const criteria = {
     tenLoai: new RegExp("^" + req.body.tenLoai.trim() + "$", "i"),
