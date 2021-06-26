@@ -1,13 +1,8 @@
 
-var cors = require('cors')
 
 var router = global.router;
 let Category = require("../models/CategoryModel");
 const mongoose = require("mongoose");
-
-// enable CORS()
-app.use(cors())
-app.options('*', cors())
 
 router.get("/getall-category", function (req, res, next) {
   Category.find({})

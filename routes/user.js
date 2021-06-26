@@ -1,14 +1,10 @@
 
-var cors = require('cors')
 
 var router = global.router;
 
 let User = require("../models/UserModel");
 
 const mongoose = require("mongoose");
-// enable CORS()
-app.use(cors())
-app.options('*', cors())
 
 // password handle
 const bcrypt = require("bcrypt")
@@ -270,7 +266,7 @@ router.put("/update_user", function (req, res, next) {
     }
 
     // update len admin
-    if (req.body.loaiUser && req.body.loaiUser.length > 2) {
+    if (req.body.loaiUser ) {
       newValues.loaiUser = req.body.loaiUser;
     }
   
