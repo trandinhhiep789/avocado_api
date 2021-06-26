@@ -28,7 +28,7 @@ var UserSchema = new Schema({
     imageUrl: {
         type: String
     },
-    tongHoaDon: []
+    tongHoaDon: [Number]
 })
 
 module.exports = mongoose.model('User', UserSchema)

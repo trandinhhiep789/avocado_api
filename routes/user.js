@@ -323,14 +323,14 @@ router.post("/tong_hoadon", (req, res, next) => {
         message: `Ban chua dien id san pham`,
       });
     }
+    if(req.body.tongTien > 0){
+      console.log(req.body.tongTien)
+      var tongTien = req.body.tongTien
+    }
   
     User.findOneAndUpdate(
       condition,
-      {
-        $push: {
-            tongHoaDon: { tongTien: req.body.tongTien },
-        },
-      },
+      { $push: { tongHoaDon : tongTien }},
       (err, hoadon) => {
         if (err) {
           res.json({
