@@ -252,6 +252,8 @@ router.put("/update_user", function (req, res, next) {
       newValues.tenUser = req.body.tenUser;
     }
 
+    // không được cập nhật email!
+
     // Update Images
     if(req.body.image_name && req.body.image_name.length > 0){
     //vd: http://localhost:3000/open_image?image_name=upload_4b4e30641d6ad0bc28254e87c7dc373a.jpg
@@ -261,6 +263,11 @@ router.put("/update_user", function (req, res, next) {
       const serverPort = require("../app").settings.port;
   
       newValues.imageUrl = `${serverName}:${serverPort}/open_image?image_name=${req.body.image_name}`;
+    }
+
+    // update len admin
+    if (req.body.loaiUser && req.body.loaiUser.length > 2) {
+      newValues.loaiUser = req.body.loaiUser;
     }
   
     const options = {
@@ -289,7 +296,8 @@ router.put("/update_user", function (req, res, next) {
         }
       }
     );
-  });
+});
+
 
 // xoa user
 router.delete("/delete_user/:id", async (req, res, next) => {
