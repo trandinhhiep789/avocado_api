@@ -11,6 +11,7 @@ var app = express();
 // enable CORS()
 var cors = require('cors')
 app.use(cors())
+app.options('*', cors())
 
 const PORT = process.env.PORT || 3000; // Step 1
 

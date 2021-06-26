@@ -13,6 +13,7 @@ var http = require('http');
 // enable CORS()
 var cors = require('cors')
 app.use(cors())
+app.options('*', cors())
 
 /**
  * Get port from environment and store in Express.
