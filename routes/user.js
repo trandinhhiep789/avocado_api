@@ -1,6 +1,4 @@
-// enable CORS()
-var cors = require('cors')
-app.use(cors())
+
 
 var router = global.router;
 

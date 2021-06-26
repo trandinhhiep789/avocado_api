@@ -2,9 +2,7 @@ var router = global.router;
 const mongoose = require("mongoose");
 let Product = require("../models/ProductModel");
 const fs = require("fs");
-// enable CORS()
-var cors = require('cors')
-app.use(cors())
+
 
 router.get("/getall", function (req, res, next) {
   Product.find({})
