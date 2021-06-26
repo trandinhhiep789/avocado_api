@@ -1,10 +1,14 @@
 
+var cors = require('cors')
 
 var router = global.router;
 
 let User = require("../models/UserModel");
 
 const mongoose = require("mongoose");
+// enable CORS()
+app.use(cors())
+app.options('*', cors())
 
 // password handle
 const bcrypt = require("bcrypt")
