@@ -3,11 +3,17 @@
 var router = global.router;
 
 let User = require("../models/UserModel");
-
+const paypal = require("paypal-rest-sdk")
 const mongoose = require("mongoose");
 
 // password handle
 const bcrypt = require("bcrypt")
+
+paypal.configure({
+  'mode': 'sandbox', // sandbox or live
+  'client_id': 'AU4v7qI7jr6f41w-1DfI-HWj0RudApIp1sgpw8h_E_0BUKxFtnhV9me1QQR9TSEw3o989ej37GcU3xEC',
+  'client_secret': 'EBkdwbjeyOj4UeAUSYvG1RWL3e596Ya42s17pSRUDwXjuKMDtjklwNOSje5F5uO1-nW69IzVvZO9-9TC'
+})
 
 //get all user
 router.get("/getall_user", function (req, res, next) {
@@ -347,7 +353,7 @@ router.post("/tong_hoadon", (req, res, next) => {
         }
       }
     );
-  });
+});
 
 
 module.exports = router;

@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 let Product = require("../models/ProductModel");
 const fs = require("fs");
 
-
 router.get("/getall", function (req, res, next) {
   Product.find({})
     .limit(100)
@@ -340,7 +339,13 @@ router.post("/upload_image", (req, res, next) => {
       });
     }
     // key để trống "" nó sẽ ra mảng các cái file
-    var arrayOfFiles = files[""];
+    var arrayOfFiles = [];
+    if (files[""] instanceof Array) {
+      arrayOfFiles = files[""];
+    } else {
+      arrayOfFiles.push(files[""]);
+    }
+
     // neu mang co ảnh
     if (arrayOfFiles.length > 0) {
       var fileName = [];
