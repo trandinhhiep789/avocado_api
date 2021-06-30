@@ -180,6 +180,7 @@ router.post("/insert_new_product", function (req, res, next) {
     donGiaMoi: req.body.donGiaMoi,
     thanhPhan: req.body.thanhPhan,
     diemDanhGia: req.body.diemDanhGia,
+    imageUrl: req.body.imageUrl
   });
 
   newProduct.save((err) => {
@@ -202,6 +203,7 @@ router.post("/insert_new_product", function (req, res, next) {
           donGiaMoi: req.body.donGiaMoi,
           thanhPhan: req.body.thanhPhan,
           diemDanhGia: req.body.diemDanhGia,
+          imageUrl: req.body.imageUrl,
           message: `Insert new product succcessfuly`,
         },
       });
