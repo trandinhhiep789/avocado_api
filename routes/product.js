@@ -299,7 +299,7 @@ router.put("/update_product", function (req, res, next) {
 
   Product.findOneAndUpdate(
     condition,
-    { $set: newValues, $addToSet: { imageUrl: img } },
+    { $set: newValues, $addToSet: { imageUrl: req.body.image_name } },
     options,
     (err, updateProduct) => {
       if (err) {
