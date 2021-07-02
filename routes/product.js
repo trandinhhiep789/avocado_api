@@ -293,13 +293,15 @@ router.put("/update_product", function (req, res, next) {
   const serverName = require("os").hostname();
   const serverPort = require("../app").settings.port;
 
-  if (req.body.image_name && req.body.image_name.length > 0) {
-    var img = `${serverName}:${serverPort}/open_image?image_name=${req.body.image_name}`;
+  if (req.body.image_name) {
+    console.log(req.body.image_name)
+    newValues.imageUrl = req.body.image_name;
+    
   }
 
   Product.findOneAndUpdate(
     condition,
-    { $set: newValues, $addToSet: { imageUrl: req.body.image_name } },
+    { $set: newValues},
     options,
     (err, updateProduct) => {
       if (err) {
