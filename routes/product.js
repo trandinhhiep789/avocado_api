@@ -2,8 +2,9 @@ var router = global.router;
 const mongoose = require("mongoose");
 let Product = require("../models/ProductModel");
 const fs = require("fs");
+const { authenticate, authorize } = require("../middlewares/Auth/varify-token.middleware");
 
-router.get("/getall", function (req, res, next) {
+router.get("/getall",  (req, res, next) => {
   Product.find({})
     .limit(100)
     .sort({ tenSanPham: 1 })
@@ -42,7 +43,7 @@ router.get("/getall", function (req, res, next) {
 
 //get by id
 // ex: http://localhost:3000/get_product_by_id?product_id=60caf9bf8a8d4027e40a8e1f
-router.get("/get_product_by_id", function (req, res, next) {
+router.get("/get_product_by_id",  (req, res, next) => {
   console.log(mongoose.Types.ObjectId(req.query.product_id));
 
   Product.findById(
@@ -125,7 +126,7 @@ router.get("/get_product_with_category_id", (req, res, next) => {
 });
 
 //get by tenSanPham
-router.get("/get_product_with_criteria", function (req, res, next) {
+router.get("/get_product_with_criteria",  (req, res, next) => {
   // criteria tiêu chuẩn
   let criteria = {
     tenSanPham: new RegExp(req.query.tenSanPham, "i"), // <=> giống %abc% trong sql
@@ -169,7 +170,7 @@ router.get("/get_product_with_criteria", function (req, res, next) {
     });
 });
 
-router.post("/insert_new_product", function (req, res, next) {
+router.post("/insert_new_product",authenticate, authorize(['admin', 'superadmin']),  (req, res, next) => {
   const newProduct = new Product({
     tenSanPham: req.body.tenSanPham,
     thongTinThuongHieu: req.body.thongTinThuongHieu,
@@ -211,7 +212,7 @@ router.post("/insert_new_product", function (req, res, next) {
   });
 });
 
-router.put("/update_product", function (req, res, next) {
+router.put("/update_product", authenticate, authorize(['admin', 'superadmin']), (req, res, next) => {
   let condition = {};
   if (mongoose.Types.ObjectId.isValid(req.body.product_id) == true) {
     condition._id = mongoose.Types.ObjectId(req.body.product_id);
@@ -391,7 +392,7 @@ router.get("/open_image", (req, res, next) => {
   });
 });
 
-router.delete("/delete_product/:id", async (req, res, next) => {
+router.delete("/delete_product/:id", authenticate, authorize(['admin', 'superadmin']), async (req, res, next) => {
   // let condition = {};
   // if (mongoose.Types.ObjectId.isValid(req.body.product_id) == true) {
   //   condition._id = mongoose.Types.ObjectId(req.body.product_id);
